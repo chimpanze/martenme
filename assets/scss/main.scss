@@ -1,5 +1,12 @@
 @import "normalize";
 @import "variables";
+@import "clearfix";
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 
 html {
   background-color: $background;
@@ -40,7 +47,7 @@ img {
 a {
   color: $text_color;
   text-decoration: none;
-  border-bottom: 1px solid $text_color;
+  border-bottom: 0.056em solid $text_color;
   &:hover {
     color: $hover_color;
   }
@@ -48,13 +55,13 @@ a {
 
 .wrapper {
   margin: auto;
-  width: 960px;
-  padding-top: 100px;
+  width: 53.333em;
+  padding-top: 5.556em;
 }
 
 .box {
-  overflow: hidden;
-  margin-bottom: 120px;
+  margin-bottom: 6.667em;
+  @extend %cf;
 }
 
 .left {
@@ -68,19 +75,20 @@ a {
 }
 
 header {
-  margin-bottom: 120px;
-  height: 60px;
+  margin-bottom: $margin_bottom;
+  @extend %cf;
   h1 {
     text-transform: uppercase;
     font-size: $font_size_header * 2;
-    width: $left_side;
+    line-height: 1em;
     margin: 0;
     float: left;
   }
   nav {
     display: block;
     width: $right_side;
-    overflow: hidden;
+    float: right;
+    margin-top: 1.444em;
     ul {
       list-style: none;
       margin: 0;
@@ -90,14 +98,14 @@ header {
         a {
           display: block;
           font-size: $font_size_header;
-          margin-right: 30px;
+          margin-right: 1.667em;
           text-transform: uppercase;
           font-family: $headings_font;
           text-decoration: none;
           color: $text_color;
           border: none;
           &:hover {
-            border-bottom: 4px solid $text_color;
+            border-bottom: 0.222em solid $text_color;
           }
         }
       }
@@ -107,24 +115,24 @@ header {
 
 footer {
   background-color: $footer_color;
-  height: 100%;
+  @extend %cf;
 }
 
 .social {
-  overflow: hidden;
   list-style: none;
   margin: 0;
   padding: 0;
   li {
     float: left;
-    margin-right: 10px;
+    margin-right: 0.556em;
   }
+  @extend %cf;
 }
 
 i {
   display: block;
-  width: 50px;
-  height: 50px;
+  width: 2.778em;
+  height: 2.778em;
   &.fb {
     background-image: url(../img/social/FB.png);
   }
@@ -143,5 +151,182 @@ i {
 }
 
 .latest_project a {
-  margin-right: 30px;
+  margin-right: 1.667em;
+}
+
+.grid {
+  color: $grid_font_color;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  li {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0.334em 0.556em 0;
+    width: 12.667em;
+    height: 12.667em;
+  }
+  li > a,
+  li > a img {
+    border: none;
+    outline: none;
+    display: block;
+    position: relative;
+  }
+  li.og-expanded > a::after {
+    top: auto;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-bottom-color: #494949;
+    border-width: 35px;
+    left: 50%;
+    margin: -20px 0 0 -30px;
+  }
+  a {
+    color: $grid_font_color;
+    text-decoration: none;
+    border-bottom: 0.056em solid $grid_font_color;
+    &:hover {
+      color: $hover_color;
+    }
+  }
+  h2 {
+    margin: 0.185em 0 1.111em 0;
+  }
+  .og-expander {
+    position: absolute;
+    background: #494949;
+    top: auto;
+    left: 0;
+    width: 100%;
+    margin-top: 2.778em;
+    text-align: left;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .og-expander-inner {
+    width: 53.333em;
+    padding: 3.889em 0 3.889em 0;
+    margin: 0 auto;
+    height: 100%;
+  }
+
+  .og-close {
+    position: absolute;
+    width: 2.222em;
+    height: 2.222em;
+    top: 1.111em;
+    right: 1.111em;
+    cursor: pointer;
+  }
+
+  .og-close::before,
+  .og-close::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    height: 0.278em;
+    background: #fcfcfc;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .og-close::after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  .og-close:hover::before,
+  .og-close:hover::after {
+    background: #333;
+  }
+
+  .og-fullimg,
+  .og-details {
+    width: 26.667em;
+    float: left;
+    height: 15em;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .og-details {
+    width: 22.778em;
+    float: right;
+  }
+
+  .og-fullimg {
+    text-align: center;
+  }
+
+  .og-fullimg img {
+    display: inline-block;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  .og-loading {
+    width: 1.111em;
+    height: 1.111em;
+    border-radius: 50%;
+    background: #ddd;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1.389em 0 0 -1.389em;
+    -webkit-animation: loader 0.5s infinite ease-in-out both;
+    -moz-animation: loader 0.5s infinite ease-in-out both;
+    animation: loader 0.5s infinite ease-in-out both;
+  }
+}
+
+@-webkit-keyframes loader {
+  0% {
+    background: #ddd;
+  }
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
+  }
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
+  }
+}
+
+@-moz-keyframes loader {
+  0% {
+    background: #ddd;
+  }
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
+  }
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
+  }
+}
+
+@keyframes loader {
+  0% {
+    background: #ddd;
+  }
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
+  }
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
+  }
 }

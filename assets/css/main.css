@@ -454,11 +454,45 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.box:before, header:before, footer:before, .social:before,
+.box:after,
+header:after,
+footer:after,
+.social:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */ }
+
+.box:after, header:after, footer:after, .social:after {
+  clear: both; }
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.box, header, footer, .social {
+  *zoom: 1; }
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box; }
+
 html {
   background-color: #fcfcfc;
   color: #121212;
-  font-size: 18px;
-  line-height: 24px; }
+  font-size: 1.125em;
+  line-height: 1.5em; }
 
 body {
   margin: 0;
@@ -486,40 +520,39 @@ img {
 a {
   color: #121212;
   text-decoration: none;
-  border-bottom: 1px solid #121212; }
+  border-bottom: 0.056em solid #121212; }
   a:hover {
     color: #cf0000; }
 
 .wrapper {
   margin: auto;
-  width: 960px;
-  padding-top: 100px; }
+  width: 53.333em;
+  padding-top: 5.556em; }
 
 .box {
-  overflow: hidden;
-  margin-bottom: 120px; }
+  margin-bottom: 6.667em; }
 
 .left {
-  width: 560px;
+  width: 31.111em;
   float: left; }
 
 .right {
-  width: 400px;
+  width: 22.222em;
   float: right; }
 
 header {
-  margin-bottom: 120px;
-  height: 60px; }
+  margin-bottom: 6.667em; }
   header h1 {
     text-transform: uppercase;
     font-size: 3.334em;
-    width: 560px;
+    line-height: 1em;
     margin: 0;
     float: left; }
   header nav {
     display: block;
-    width: 400px;
-    overflow: hidden; }
+    width: 22.222em;
+    float: right;
+    margin-top: 1.444em; }
     header nav ul {
       list-style: none;
       margin: 0;
@@ -529,32 +562,30 @@ header {
         header nav ul li a {
           display: block;
           font-size: 1.667em;
-          margin-right: 30px;
+          margin-right: 1.667em;
           text-transform: uppercase;
           font-family: "alternate-gothic-no-2-d", sans-serif;
           text-decoration: none;
           color: #121212;
           border: none; }
           header nav ul li a:hover {
-            border-bottom: 4px solid #121212; }
+            border-bottom: 0.222em solid #121212; }
 
 footer {
-  background-color: #e2e2e2;
-  height: 100%; }
+  background-color: #e2e2e2; }
 
 .social {
-  overflow: hidden;
   list-style: none;
   margin: 0;
   padding: 0; }
   .social li {
     float: left;
-    margin-right: 10px; }
+    margin-right: 0.556em; }
 
 i {
   display: block;
-  width: 50px;
-  height: 50px; }
+  width: 2.778em;
+  height: 2.778em; }
   i.fb {
     background-image: url(../img/social/FB.png); }
   i.gplus {
@@ -567,4 +598,147 @@ i {
     background-image: url(../img/social/GITHUB.png); }
 
 .latest_project a {
-  margin-right: 30px; }
+  margin-right: 1.667em; }
+
+.grid {
+  color: #fcfcfc;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%; }
+  .grid li {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0.334em 0.556em 0;
+    width: 12.667em;
+    height: 12.667em; }
+  .grid li > a,
+  .grid li > a img {
+    border: none;
+    outline: none;
+    display: block;
+    position: relative; }
+  .grid li.og-expanded > a::after {
+    top: auto;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-bottom-color: #494949;
+    border-width: 35px;
+    left: 50%;
+    margin: -20px 0 0 -30px; }
+  .grid a {
+    color: #fcfcfc;
+    text-decoration: none;
+    border-bottom: 0.056em solid #fcfcfc; }
+    .grid a:hover {
+      color: #cf0000; }
+  .grid h2 {
+    margin: 0.185em 0 1.111em 0; }
+  .grid .og-expander {
+    position: absolute;
+    background: #494949;
+    top: auto;
+    left: 0;
+    width: 100%;
+    margin-top: 2.778em;
+    text-align: left;
+    height: 0;
+    overflow: hidden; }
+  .grid .og-expander-inner {
+    width: 53.333em;
+    padding: 3.889em 0 3.889em 0;
+    margin: 0 auto;
+    height: 100%; }
+  .grid .og-close {
+    position: absolute;
+    width: 2.222em;
+    height: 2.222em;
+    top: 1.111em;
+    right: 1.111em;
+    cursor: pointer; }
+  .grid .og-close::before,
+  .grid .og-close::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    height: 0.278em;
+    background: #fcfcfc;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg); }
+  .grid .og-close::after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg); }
+  .grid .og-close:hover::before,
+  .grid .og-close:hover::after {
+    background: #333; }
+  .grid .og-fullimg,
+  .grid .og-details {
+    width: 26.667em;
+    float: left;
+    height: 15em;
+    overflow: hidden;
+    position: relative; }
+  .grid .og-details {
+    width: 22.778em;
+    float: right; }
+  .grid .og-fullimg {
+    text-align: center; }
+  .grid .og-fullimg img {
+    display: inline-block;
+    max-height: 100%;
+    max-width: 100%; }
+  .grid .og-loading {
+    width: 1.111em;
+    height: 1.111em;
+    border-radius: 50%;
+    background: #ddd;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1.389em 0 0 -1.389em;
+    -webkit-animation: loader 0.5s infinite ease-in-out both;
+    -moz-animation: loader 0.5s infinite ease-in-out both;
+    animation: loader 0.5s infinite ease-in-out both; }
+
+@-webkit-keyframes loader {
+  0% {
+    background: #ddd; }
+
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
+
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
+
+@-moz-keyframes loader {
+  0% {
+    background: #ddd; }
+
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
+
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
+
+@keyframes loader {
+  0% {
+    background: #ddd; }
+
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
+
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
