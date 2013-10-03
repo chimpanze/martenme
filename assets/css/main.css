@@ -463,25 +463,62 @@ table {
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
-.box:before, header:before, footer:before, .social:before,
+.box:before, header:before, footer:before, .social:before, .blog:before,
 .box:after,
 header:after,
 footer:after,
-.social:after {
+.social:after,
+.blog:after {
   content: " ";
   /* 1 */
   display: table;
   /* 2 */ }
 
-.box:after, header:after, footer:after, .social:after {
+.box:after, header:after, footer:after, .social:after, .blog:after {
   clear: both; }
 
 /**
  * For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats.
  */
-.box, header, footer, .social {
+.box, header, footer, .social, .blog {
   *zoom: 1; }
+
+@-webkit-keyframes loader {
+  0% {
+    background: #ddd; }
+
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
+
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
+
+@-moz-keyframes loader {
+  0% {
+    background: #ddd; }
+
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
+
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
+
+@keyframes loader {
+  0% {
+    background: #ddd; }
+
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
+
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
 
 *,
 *:before,
@@ -509,6 +546,9 @@ h1 {
 
 h2 {
   font-size: 1.667em; }
+
+h2:first-of-type {
+  margin-top: 0; }
 
 h3 {
   font-size: 1.11133em; }
@@ -707,38 +747,36 @@ i {
     -moz-animation: loader 0.5s infinite ease-in-out both;
     animation: loader 0.5s infinite ease-in-out both; }
 
-@-webkit-keyframes loader {
-  0% {
-    background: #ddd; }
+input, textarea {
+  display: block;
+  width: 28.333em;
+  border: 0.222em solid #e2e2e2;
+  font-family: "kepler-std", serif;
+  padding: 0.278em;
+  margin-bottom: 1.111em; }
 
-  33% {
-    background: #ccc;
-    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
+textarea {
+  height: 12.222em; }
 
-  66% {
-    background: #ccc;
-    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
+input[type="submit"] {
+  background-color: #e2e2e2;
+  width: 7.222em; }
 
-@-moz-keyframes loader {
-  0% {
-    background: #ddd; }
+.blog {
+  width: 28.333em; }
 
-  33% {
-    background: #ccc;
-    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
+.blog nav ul {
+  margin: 0;
+  padding: 0; }
+  .blog nav ul li {
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: right; }
+  .blog nav ul li:first-child {
+    float: left; }
 
-  66% {
-    background: #ccc;
-    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
-
-@keyframes loader {
-  0% {
-    background: #ddd; }
-
-  33% {
-    background: #ccc;
-    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
-
-  66% {
-    background: #ccc;
-    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
+article {
+  margin-bottom: 6.667em; }
+  article header {
+    margin-bottom: 0; }

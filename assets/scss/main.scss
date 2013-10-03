@@ -1,6 +1,7 @@
 @import "normalize";
 @import "variables";
 @import "clearfix";
+@import "keyframes";
 
 *,
 *:before,
@@ -33,6 +34,10 @@ h1 {
 
 h2 {
   font-size: $font_size_header;
+}
+
+h2:first-of-type {
+  margin-top: 0;
 }
 
 h3 {
@@ -289,44 +294,46 @@ i {
   }
 }
 
-@-webkit-keyframes loader {
-  0% {
-    background: #ddd;
+input, textarea {
+  display: block;
+  width: $form_input_size;
+  border: 0.222em solid #e2e2e2;
+  font-family: $text_font;
+  padding: 0.278em;
+  margin-bottom: 1.111em;
+}
+
+textarea {
+  height: 12.222em;
+}
+
+input[type="submit"] {
+  background-color: #e2e2e2;
+  width: 7.222em;
+}
+
+.blog {
+  width: $blog_width;
+  @extend %cf;
+}
+
+.blog nav ul {
+  margin: 0;
+  padding: 0;
+  li {
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: right;
   }
-  33% {
-    background: #ccc;
-    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
-  }
-  66% {
-    background: #ccc;
-    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
+  li:first-child {
+    float: left;
   }
 }
 
-@-moz-keyframes loader {
-  0% {
-    background: #ddd;
-  }
-  33% {
-    background: #ccc;
-    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
-  }
-  66% {
-    background: #ccc;
-    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
-  }
-}
-
-@keyframes loader {
-  0% {
-    background: #ddd;
-  }
-  33% {
-    background: #ccc;
-    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
-  }
-  66% {
-    background: #ccc;
-    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
+article {
+  margin-bottom: $margin_bottom;
+  header {
+    margin-bottom: 0;
   }
 }
